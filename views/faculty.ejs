@@ -1,12 +1,79 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Hello World</h1>
-</body>
-</html>
+<%- include("./partials/header.ejs") %>
+<section id="mu-page-breadcrumb">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="mu-page-breadcrumb-area">
+          <h2>Facilities</h2>
+          <ol class="breadcrumb">
+            <li><a href="#">Facilities</a></li>
+            <li class="active">Facilities</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="mu-gallery">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="mu-gallery-area">
+          <!-- start gallery content -->
+          <div class="mu-gallery-content">
+            <div class="mu-gallery-body">
+              <ul id="mixit-container" class="row">
+                <li class="col-md-4 col-sm-6 col-xs-12 mix lab">
+                  <div class="mu-single-gallery">
+                    <div class="mu-single-gallery-item">
+                      <div class="mu-single-gallery-img">
+                        <a href="#"
+                          ><img alt="img" src="{{ faculty.picture.url }}"
+                        /></a>
+                      </div>
+                      <div class="mu-single-gallery-info">
+                        <div class="mu-single-gallery-info-inner">
+                          <h4>{{ faculty.name }}</h4>
+                          <p>{{ faculty.job_title }}</p>
+                          <a href="{{ faculty.facebook }}"
+                            ><span class="fa fa-facebook"></span
+                          ></a>
+                          <a href="{{ faculty.twitter }}"
+                            ><span class="fa fa-twitter"></span
+                          ></a>
+                          <a href="{{ faculty.linkedin }}"
+                            ><span class="fa fa-linkedin"></span
+                          ></a>
+                          <br />
+                          <a
+                            href="{{ faculty.email }}"
+                            title="{{ faculty.email }}"
+                            style="
+                              margin-top: 10px;
+                              background-color: #05b9fa!;
+                              width: fit-content;
+                              padding: 0px 10px;
+                            "
+                          >
+                            <span
+                              class="fa fa-google-plus"
+                              style="margin-right: 5px"
+                            ></span>
+                            {{ faculty.email }}
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- end gallery content -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<%- include("./partials/footer.ejs") %>
