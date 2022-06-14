@@ -1,10 +1,10 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 
-import { registerValidation, loginValidation } from "../utils/validation";
-import User from "../models/User";
-import RefreshToken from "../models/RefreshToken";
-import generateAccessToken from "../utils/generateAccessToken";
+import { registerValidation, loginValidation } from "../utils/validation.js";
+import User from "../models/User.js";
+import RefreshToken from "../models/RefreshToken.js";
+import generateAccessToken from "../utils/generateAccessToken.js";
 
 export const register = async (req, res) => {
   // Validating Request
