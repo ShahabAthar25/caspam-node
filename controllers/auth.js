@@ -7,11 +7,11 @@ import RefreshToken from "../models/RefreshToken.js";
 import generateAccessToken from "../utils/generateAccessToken.js";
 
 export const register = async (req, res) => {
-  // Validating Request
-  const { error } = registerValidation(req.body);
-  if (error) return res.status(400).json(error.details[0].message);
-
   try {
+    // Validating Request
+    const { error } = registerValidation(req.body);
+    if (error) return res.status(400).json(error.details[0].message);
+
     const userExist = await User.findOne({ username: req.body.username });
     if (userExist) return res.status(400).json("Username already exists");
 
