@@ -3,5 +3,5 @@ export const homeView = (req, res) => {
 };
 
 export const createFaculty = async (req, res) => {
-  res.send("Hello World");
+  res.send(req.user);
 };

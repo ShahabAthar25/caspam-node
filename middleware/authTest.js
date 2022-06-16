@@ -1,0 +1,11 @@
+export default function (req, res, next) {
+  const user = {
+    _id: "0x0x0x",
+    username: "0x|0x|0x",
+    email: "0x|0x|0x@email.com",
+  };
+
+  req.user = user;
+
+  next();
+}
