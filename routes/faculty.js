@@ -1,8 +1,9 @@
 import { Router } from "express";
-import { homeView } from "../controllers/faculty.js"
+import { homeView, createFaculty } from "../controllers/faculty.js";
 
-const router = Router()
+const router = Router();
 
-router.get("/", homeView)
+router.get("/", homeView);
+router.get("/", createFaculty);
 
-export default router
+export default router;

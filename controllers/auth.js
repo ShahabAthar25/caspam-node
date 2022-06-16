@@ -59,9 +59,6 @@ export const login = async (req, res) => {
       _id: user._id,
       username: user.username,
       email: user.email,
-      profilePic: user.profilePic,
-      likedPost: user.likedPosts,
-      karma: user.karma,
     };
 
     // creating an access token
@@ -86,9 +83,6 @@ export const login = async (req, res) => {
       _id: user._id,
       username: user.username,
       email: user.email,
-      profilePic: user.profilePic,
-      joinedSubReddits: user.joinedSubReddits,
-      karma: user.karma,
       accessToken: accessToken,
       refreshToken: refreshToken,
     });
@@ -103,7 +97,7 @@ export const refresh = async (req, res) => {
     const refreshToken = req.body.token;
 
     // if refresh token is none then sending a 400(bad request) response
-    if (refreshToken == null) return res.sendStatus(400);
+    if (!refreshToken) return res.status(400).json("No token provided");
 
     // finding refresh token in database to see if the user is logged in
     const _refreshToken = await RefreshToken.findOne({
@@ -112,21 +106,18 @@ export const refresh = async (req, res) => {
 
     // checking if refresh token is in the database, if not, then sending
     // a 403(forbidden) response
-    if (!_refreshToken) return res.sendStatus(403);
+    if (!_refreshToken) return res.status(403).json("token is incorrect");
 
     // verifying the refresh token
     jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
       // if any error then send a 403(forbidden) response
-      if (err) return res.sendStatus(403);
+      if (err) return res.status(403).json("token is incorrect");
 
       // defining the data inside the access token
       const payload = {
         _id: user._id,
         username: user.username,
         email: user.email,
-        profilePic: user.profilePic,
-        likedPost: user.likedPosts,
-        karma: user.karma,
       };
 
       // creating access token with user data
@@ -143,14 +134,23 @@ export const refresh = async (req, res) => {
 export const logout = async (req, res) => {
   try {
     // if the token is none then sending a 400(bad request) response
-    if (!req.body.token) return res.sendStatus(400);
+    if (!req.body.token) return res.status(400).json("No token provided");
+
+    console.log(req.body.token);
+    // getting refresh token
+    const refreshToken = await RefreshToken.findOne({
+      refreshToken: req.body.token,
+    });
+
+    if (!refreshToken) return res.status(404).json("token is incorrect");
 
     // finding and deleting the refresh token
-    await RefreshToken.findOneAndDelete({ refreshToken: req.body.token });
+    await refreshToken.deleteOne();
 
     // sending user the acknowledgement of logout
-    res.json("Successfully loggedout");
+    res.json("Successfully logged out");
   } catch (error) {
+    console.log(error);
     res.status(500).json({ message: error });
   }
 };

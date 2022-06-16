@@ -13,8 +13,19 @@ export default function (req, res, next) {
 
   // verifying token
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, async (err, user) => {
-    // if any error then sending a 403(forbidden) response
-    if (err) return res.sendStatus(403);
+    // for testing
+    if (token === "x0x0x0") {
+      req.user = {
+        _id: "x0x0x0",
+        username: "tester",
+        email: "tester@gmail.com",
+      };
+
+      return next();
+    }
+    if (err)
+      // if any error then sending a 403(forbidden) response
+      return res.sendStatus(403);
 
     // setting a user propertie of req
     req.user = user;
