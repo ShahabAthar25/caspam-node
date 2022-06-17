@@ -21,7 +21,7 @@ const facultySchema = mongoose.Schema({
     type: String,
     require: true,
   },
-  gmail: {
+  email: {
     type: String,
     require: true,
   },

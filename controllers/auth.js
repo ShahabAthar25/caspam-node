@@ -136,7 +136,6 @@ export const logout = async (req, res) => {
     // if the token is none then sending a 400(bad request) response
     if (!req.body.token) return res.status(400).json("No token provided");
 
-    console.log(req.body.token);
     // getting refresh token
     const refreshToken = await RefreshToken.findOne({
       refreshToken: req.body.token,

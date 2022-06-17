@@ -18,3 +18,16 @@ export const loginValidation = (data) => {
 
   return schema.validate(data);
 };
+
+export const createFaculty = (data) => {
+  const schema = Joi.object({
+    name: Joi.string().required(),
+    degree: Joi.string().required(),
+    facebook: Joi.string().required(),
+    twitter: Joi.string().required(),
+    linkedin: Joi.string().required(),
+    email: Joi.string().required().email(),
+  });
+
+  return schema.validate(data);
+};
