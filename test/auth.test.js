@@ -3,7 +3,7 @@ import app from "../app.js";
 
 let refreshToken = "";
 
-describe("POST /auth", () => {
+describe("ENDPOINT /auth", () => {
   describe("POST /register", () => {
     describe("With username and password", () => {
       test("should respond with a 200 status code and has userId", async () => {

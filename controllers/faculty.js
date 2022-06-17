@@ -1,5 +1,5 @@
 import Faculty from "../models/Faculty.js";
-import { createFaculty } from "../utils/validation.js";
+import { createFacultyValidation } from "../utils/validation.js";
 
 export const homeView = (req, res) => {
   res.render("faculty");
@@ -7,7 +7,7 @@ export const homeView = (req, res) => {
 
 export const createFaculty = async (req, res) => {
   // Validating Request
-  const { error } = createFaculty(req.body);
+  const { error } = createFacultyValidation(req.body);
   if (error) return res.status(400).json(error.details[0].message);
 
   try {
