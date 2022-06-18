@@ -1,8 +1,14 @@
 import Faculty from "../models/Faculty.js";
 import { createFacultyValidation } from "../utils/validation.js";
 
-export const homeView = (req, res) => {
-  res.render("faculty");
+export const homeView = async (req, res) => {
+  try {
+    const facultyMembers = await Faculty.find();
+
+    res.render("faculty", { facultyMembers });
+  } catch (error) {
+    res.status(500).json(error);
+  }
 };
 
 export const createFaculty = async (req, res) => {
@@ -27,6 +33,41 @@ export const createFaculty = async (req, res) => {
 
     // returning faculty to user
     res.json(faculty);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
+export const updateFaculty = async (req, res) => {
+  try {
+    // finding faculty
+    const faculty = await Faculty.findById(req.params.id);
+
+    // if faculty does not exist then returning a 404(object not found) error
+    if (!faculty) return res.status(404).json("No faculty member found");
+
+    // updating faculty member
+    await faculty.updateOne({
+      $set: req.body,
+    });
+
+    res.json("Faculty member updated successfully");
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
+export const deleteFaculty = async (req, res) => {
+  try {
+    // finding faculty
+    const faculty = await Faculty.findById(req.params.id);
+
+    // if faculty does not exist then returning a 404(object not found) error
+    if (!faculty) return res.status(404).json("No faculty found");
+
+    await faculty.deleteOne();
+
+    res.json("faculty member successfully deleted");
   } catch (error) {
     res.status(500).json(error);
   }

@@ -22,50 +22,38 @@
         <div class="mu-gallery-area">
           <!-- start gallery content -->
           <div class="mu-gallery-content">
+            <!-- End gallery menu -->
             <div class="mu-gallery-body">
               <ul id="mixit-container" class="row">
-                <li class="col-md-4 col-sm-6 col-xs-12 mix lab">
+                <!-- start single gallery image -->
+                <% facultyMembers.forEach(member => { %>
+                <li class="col-md-4 col-sm-6 col-xs-12 lab">
                   <div class="mu-single-gallery">
                     <div class="mu-single-gallery-item">
                       <div class="mu-single-gallery-img">
                         <a href="#"
-                          ><img alt="img" src="{{ faculty.picture.url }}"
+                          ><img alt="img" src="img/gallery/small/1.jpg"
                         /></a>
                       </div>
                       <div class="mu-single-gallery-info">
                         <div class="mu-single-gallery-info-inner">
-                          <h4>{{ faculty.name }}</h4>
-                          <p>{{ faculty.job_title }}</p>
-                          <a href="{{ faculty.facebook }}"
-                            ><span class="fa fa-facebook"></span
-                          ></a>
-                          <a href="{{ faculty.twitter }}"
-                            ><span class="fa fa-twitter"></span
-                          ></a>
-                          <a href="{{ faculty.linkedin }}"
-                            ><span class="fa fa-linkedin"></span
-                          ></a>
-                          <br />
+                          <h4><%= member.name %></h4>
+                          <p><%= member.degree %> </p>
                           <a
-                            href="{{ faculty.email }}"
-                            title="{{ faculty.email }}"
-                            style="
-                              margin-top: 10px;
-                              background-color: #05b9fa!;
-                              width: fit-content;
-                              padding: 0px 10px;
-                            "
-                          >
-                            <span
-                              class="fa fa-google-plus"
-                              style="margin-right: 5px"
-                            ></span>
-                            {{ faculty.email }}
-                          </a>
+                            href="assets/img/gallery/big/1.jpg"
+                            data-fancybox-group="gallery"
+                            class="fancybox"
+                            ><span class="fa fa-eye"></span
+                          ></a>
+                          <a href="#" class="aa-link"
+                            ><span class="fa fa-link"></span
+                          ></a>
                         </div>
                       </div>
                     </div>
                   </div>
+                </li>
+                <% }) %> 
                 </li>
               </ul>
             </div>

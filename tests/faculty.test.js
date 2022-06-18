@@ -1,5 +1,10 @@
+import connectToDatabase from "../database/connect.js";
 import request from "supertest";
 import app from "../app.js";
+
+beforeAll(async () => {
+  await connectToDatabase();
+});
 
 describe("ENDPOINT /faculty", () => {
   describe("POST /", () => {
