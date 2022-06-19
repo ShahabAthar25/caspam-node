@@ -26,21 +26,21 @@
             <div class="mu-gallery-body">
               <ul id="mixit-container" class="row">
                 <!-- start single gallery image -->
-                <% facultyMembers.forEach(member => { %>
+                <% galleryMoments.forEach(moment => { %>
                 <li class="col-md-4 col-sm-6 col-xs-12 lab">
                   <div class="mu-single-gallery">
                     <div class="mu-single-gallery-item">
                       <div class="mu-single-gallery-img">
                         <a href="#"
-                          ><img alt="Faculty Member Image" src="<%= member.image %> "
+                          ><img alt="Faculty Member Image" src="<%= moment.image %> "
                         /></a>
                       </div>
                       <div class="mu-single-gallery-info">
                         <div class="mu-single-gallery-info-inner">
-                          <h4><%= member.name %></h4>
-                          <p><%= member.degree %> </p>
+                          <h4><%= moment.title %></h4>
+                          <p><%= moment.description %> </p>
                           <a
-                            href="img/gallery/big/1.jpg"
+                            href="<%= moment.image %> "
                             data-fancybox-group="gallery"
                             class="fancybox"
                             ><span class="fa fa-eye"></span

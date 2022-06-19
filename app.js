@@ -6,6 +6,7 @@ import cors from "cors";
 import path from "path";
 
 import facultyRoute from "./routes/faculty.js";
+import galleryRoute from "./routes/gallery.js";
 import authRoute from "./routes/auth.js";
 import connectToDatabase from "./database/connect.js";
 
@@ -26,6 +27,7 @@ app.use(helmet());
 app.use(cors());
 
 app.use("/faculty", facultyRoute);
+app.use("/gallery", galleryRoute);
 app.use("/auth", authRoute);
 
 export const PORT = process.env.PORT || 3000;
