@@ -75,5 +75,17 @@ export const updateMoment = async (req, res) => {
   }
 };
 export const deleteMoment = async (req, res) => {
-  res.send("Hello World");
+  try {
+    // finding gallery moment
+    const moment = await Gallery.findById(req.params.id);
+
+    // if faculty does not exist then returning a 404(object not found) error
+    if (!moment) return res.status(404).json("Gallery moment not found");
+
+    await moment.deleteOne();
+
+    res.json("Gallery moment successfully deleted");
+  } catch (error) {
+    res.status(500).json(error);
+  }
 };

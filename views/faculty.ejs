@@ -4,10 +4,10 @@
     <div class="row">
       <div class="col-md-12">
         <div class="mu-page-breadcrumb-area">
-          <h2>Facilities</h2>
+          <h2>Faculty</h2>
           <ol class="breadcrumb">
-            <li><a href="#">Facilities</a></li>
-            <li class="active">Facilities</li>
+            <li><a href="#">Home</a></li>
+            <li class="active">Faculty</li>
           </ol>
         </div>
       </div>
@@ -40,15 +40,32 @@
                             <div class="mu-single-gallery-info-inner">
                               <h4><%= member.name %></h4>
                               <p><%= member.degree %> </p>
+                              <a href="<%= member.facebook %> "
+                                ><span class="fa fa-facebook"></span
+                              ></a>
+                              <a href="<%= member.twitter %> "
+                                ><span class="fa fa-twitter"></span
+                              ></a>
+                              <a href="<%= member.linkedin %> "
+                                ><span class="fa fa-linkedin"></span
+                              ></a>
+                              <br />
                               <a
-                                href="<%= member.image %> "
-                                data-fancybox-group="gallery"
-                                class="fancybox"
-                                ><span class="fa fa-eye"></span
-                              ></a>
-                              <a href="#" class="aa-link"
-                                ><span class="fa fa-link"></span
-                              ></a>
+                                href="<%= member.email %> "
+                                title="<%= member.email %>"
+                                style="
+                                  margin-top: 10px;
+                                  background-color: #05b9fa!;
+                                  width: fit-content;
+                                  padding: 0px 10px;
+                                "
+                              >
+                                <span
+                                  class="fa fa-google-plus"
+                                  style="margin-right: 5px"
+                                ></span>
+                                <%= member.email %> 
+                              </a>
                             </div>
                           </div>
                         </div>
@@ -57,7 +74,7 @@
                   <% }) %> 
                 <% } else { %>
                   <center>
-                    <h1>There are no moments as of now.</h1>
+                    <h1>There are no faculty members as of right now.</h1>
                   </center>
                 <% } %> 
                 </li>

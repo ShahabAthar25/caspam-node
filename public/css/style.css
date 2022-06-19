@@ -221,6 +221,11 @@ img {
 #mu-menu .navbar-default .navbar-nav li #mu-search-icon:hover, #mu-menu .navbar-default .navbar-nav li #mu-search-icon:focus {
   border: none;
 }
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
 #mu-menu .navbar-default .navbar-nav li .dropdown-menu {
   border-radius: 0px;
 }

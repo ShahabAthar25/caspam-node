@@ -6,7 +6,7 @@
         <div class="mu-page-breadcrumb-area">
           <h2>Gallery</h2>
           <ol class="breadcrumb">
-            <li><a href="#">Gallery</a></li>
+            <li><a href="#">Home</a></li>
             <li class="active">Gallery</li>
           </ol>
         </div>
@@ -41,7 +41,7 @@
                               <h4><%= moment.title %></h4>
                               <p><%= moment.description %> </p>
                               <a
-                                href="<%= moment.image %> "
+                                href="<%= member.image %> "
                                 data-fancybox-group="gallery"
                                 class="fancybox"
                                 ><span class="fa fa-eye"></span
@@ -57,7 +57,7 @@
                   <% }) %> 
                 <% } else { %>
                   <center>
-                    <h1>There are no moments as of now.</h1>
+                    <h1>There are no moments as of right now.</h1>
                   </center>
                 <% } %> 
                 </li>
