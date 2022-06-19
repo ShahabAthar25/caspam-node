@@ -3,9 +3,10 @@ import { createFacultyValidation } from "../utils/validation.js";
 
 export const homeView = async (req, res) => {
   try {
+    const active = "faculty";
     const facultyMembers = await Faculty.find();
 
-    res.render("faculty", { facultyMembers });
+    res.render("faculty", { facultyMembers, active });
   } catch (error) {
     res.status(500).json(error);
   }
