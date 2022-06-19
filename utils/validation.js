@@ -32,3 +32,13 @@ export const createFacultyValidation = (data) => {
 
   return schema.validate(data);
 };
+
+export const createGalleryMomentValidation = (data) => {
+  const schema = Joi.object({
+    title: Joi.string().required(),
+    description: Joi.string().required(),
+    image: Joi.string().required(),
+  });
+
+  return schema.validate(data);
+};
