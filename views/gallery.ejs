@@ -26,34 +26,40 @@
             <div class="mu-gallery-body">
               <ul id="mixit-container" class="row">
                 <!-- start single gallery image -->
-                <% galleryMoments.forEach(moment => { %>
-                <li class="col-md-4 col-sm-6 col-xs-12 lab">
-                  <div class="mu-single-gallery">
-                    <div class="mu-single-gallery-item">
-                      <div class="mu-single-gallery-img">
-                        <a href="#"
-                          ><img alt="Gallery Moment Image" src="<%= moment.image %> "
-                        /></a>
-                      </div>
-                      <div class="mu-single-gallery-info">
-                        <div class="mu-single-gallery-info-inner">
-                          <h4><%= moment.title %></h4>
-                          <p><%= moment.description %> </p>
-                          <a
-                            href="<%= moment.image %> "
-                            data-fancybox-group="gallery"
-                            class="fancybox"
-                            ><span class="fa fa-eye"></span
-                          ></a>
-                          <a href="#" class="aa-link"
-                            ><span class="fa fa-link"></span
-                          ></a>
+                <% if (galleryMoments.length > 0) { %> 
+                  <% galleryMoments.forEach(moment => { %>
+                    <li class="col-md-4 col-sm-6 col-xs-12 lab">
+                      <div class="mu-single-gallery">
+                        <div class="mu-single-gallery-item">
+                          <div class="mu-single-gallery-img">
+                            <a href="#"
+                              ><img alt="Gallery Moment Image" src="<%= moment.image %> "
+                            /></a>
+                          </div>
+                          <div class="mu-single-gallery-info">
+                            <div class="mu-single-gallery-info-inner">
+                              <h4><%= moment.title %></h4>
+                              <p><%= moment.description %> </p>
+                              <a
+                                href="<%= moment.image %> "
+                                data-fancybox-group="gallery"
+                                class="fancybox"
+                                ><span class="fa fa-eye"></span
+                              ></a>
+                              <a href="#" class="aa-link"
+                                ><span class="fa fa-link"></span
+                              ></a>
+                            </div>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                </li>
-                <% }) %> 
+                    </li>
+                  <% }) %> 
+                <% } else { %>
+                  <center>
+                    <h1>There are no moments as of now.</h1>
+                  </center>
+                <% } %> 
                 </li>
               </ul>
             </div>
