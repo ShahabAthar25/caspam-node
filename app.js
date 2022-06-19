@@ -7,6 +7,7 @@ import path from "path";
 
 import facultyRoute from "./routes/faculty.js";
 import galleryRoute from "./routes/gallery.js";
+import facilityRoute from "./routes/facility.js";
 import aboutRoute from "./routes/about.js";
 import authRoute from "./routes/auth.js";
 import connectToDatabase from "./database/connect.js";
@@ -29,6 +30,7 @@ app.use(cors());
 
 app.use("/faculty", facultyRoute);
 app.use("/gallery", galleryRoute);
+app.use("/facility", facilityRoute);
 app.use("/about", aboutRoute);
 app.use("/auth", authRoute);
 
