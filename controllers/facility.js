@@ -1,4 +1,5 @@
 import Facility from "../models/Facility.js";
+import { createFacilityValidation } from "../utils/validation.js";
 
 export const facilityView = async (req, res) => {
   try {
@@ -17,8 +18,24 @@ export const facilityDetailView = async (req, res) => {
 };
 
 export const createFacility = async (req, res) => {
+  // Validating Request
+  const { error } = createFacilityValidation(req.body);
+  if (error) return res.status(400).json(error.details[0].message);
+
   try {
-    res.send("Hello World");
+    // creating facility
+    const newFacility = new Facility({
+      title: req.body.title,
+      snippet: req.body.snippet,
+      description: req.body.description,
+      image: req.body.image,
+    });
+
+    // saving facility to database and storing it in an variable
+    const facility = await newFacility.save();
+
+    // returning facility to user
+    res.json(facility);
   } catch (error) {
     res.status(500).json(error);
   }
