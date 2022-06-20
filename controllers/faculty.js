@@ -6,7 +6,7 @@ export const homeView = async (req, res) => {
     const active = "faculty";
     const facultyMembers = await Faculty.find();
 
-    res.render("faculty", { facultyMembers, active });
+    res.render("faculty/faculty", { facultyMembers, active });
   } catch (error) {
     res.status(500).json(error);
   }

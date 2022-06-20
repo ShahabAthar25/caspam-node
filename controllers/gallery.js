@@ -6,7 +6,7 @@ export const galleryView = async (req, res) => {
     const active = "gallery";
     const galleryMoments = await Gallery.find();
 
-    res.render("gallery", { galleryMoments, active });
+    res.render("gallery/gallery", { galleryMoments, active });
   } catch (error) {
     res.status(500).json(error);
   }
