@@ -14,7 +14,10 @@ export const facilityView = async (req, res) => {
 
 export const facilityDetailView = async (req, res) => {
   try {
-    res.send("Hello World");
+    const active = "facility";
+    const facility = await Facility.findById(req.params.id);
+
+    res.render("facility/facilityDetail", { facility, active });
   } catch (error) {
     res.status(500).json(error);
   }
