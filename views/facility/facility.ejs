@@ -1,0 +1,70 @@
+<%- include("../partials/header.ejs") %>
+
+<base href="/facility/" />
+
+<section id="mu-page-breadcrumb">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="mu-page-breadcrumb-area">
+          <h2>Facility</h2>
+          <ol class="breadcrumb">
+            <li><a href="#">Home</a></li>
+            <li class="active">Facility</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="mu-gallery">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="mu-gallery-area">
+          <div class="mu-gallery-content">
+            <div class="mu-gallery-body">
+              <ul id="mixit-container" class="row" style="list-style: none">
+                <% if (facilities.length> 0) { %> <%
+                facilities.forEach(facility=> { %>
+                <div class="col-md-4 col-sm-6">
+                  <article class="mu-blog-single-item min-height-artical">
+                    <figure class="mu-blog-single-img">
+                      <a href="<%= facility._id %> "
+                        ><img
+                          class="min-height-img"
+                          src="<%= facility.image %> "
+                          alt="img"
+                      /></a>
+                      <figcaption class="mu-blog-caption">
+                        <h3>
+                          <a href="<%= facility._id %> ">
+                            <%= facility.title %>
+                          </a>
+                        </h3>
+                      </figcaption>
+                    </figure>
+                    <div class="mu-blog-description">
+                      <p style="height: 40px"><%= facility.snippet %></p>
+                      <a class="mu-read-more-btn" href="<%= facility._id %>/"
+                        >Read More</a
+                      >
+                    </div>
+                  </article>
+                </div>
+                <% }) %> <% } else { %>
+                <center>
+                  <h1>There are no facilities as of right now.</h1>
+                </center>
+                <% } %>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include("../partials/footer.ejs") %>

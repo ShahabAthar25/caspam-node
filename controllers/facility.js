@@ -3,7 +3,10 @@ import { createFacilityValidation } from "../utils/validation.js";
 
 export const facilityView = async (req, res) => {
   try {
-    res.send("Hello World");
+    const active = "facility";
+    const facilities = await Facility.find();
+
+    res.render("facility/facility", { facilities, active });
   } catch (error) {
     res.status(500).json(error);
   }
