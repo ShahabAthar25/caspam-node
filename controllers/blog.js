@@ -66,7 +66,16 @@ export const updateBlog = async (req, res) => {
 
 export const deleteBlog = async (req, res) => {
   try {
-    res.send("Hello World");
+    // finding blog
+    const blog = await Facility.findById(req.params.id);
+
+    // if blog does not exist then returning a 404(object not found) error
+    if (!blog) return res.status(404).json("No facility found");
+
+    // deleting blog
+    await blog.deleteOne();
+
+    res.json("Blog successfully deleted");
   } catch (error) {
     res.status(500).json(error);
   }
