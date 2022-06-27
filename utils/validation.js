@@ -60,7 +60,7 @@ export const createBlogValidation = (data) => {
     snippet: Joi.string().required().max(200),
     body: Joi.string().required(),
     image: Joi.string().required(),
-    categorie: Joi.string()
+    category: Joi.string()
       .required()
       .valid(
         "Maths",

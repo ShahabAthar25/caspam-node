@@ -26,9 +26,9 @@ const blogSchema = mongoose.Schema({
     type: Array,
     default: [],
   },
-  categorie: {
+  category: {
     type: String,
-    default: "all",
+    require: true,
   },
 });
 

@@ -52,10 +52,10 @@ export const updateFacility = async (req, res) => {
     const facility = await Facility.findById(req.params.id);
 
     // if faculty does not exist then returning a 404(object not found) error
-    if (!faculty) return res.status(404).json("No facility found");
+    if (!facility) return res.status(404).json("No facility found");
 
     // updating faculty member
-    await faculty.updateOne({
+    await facility.updateOne({
       $set: req.body,
     });
 
