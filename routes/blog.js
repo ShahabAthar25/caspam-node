@@ -14,9 +14,13 @@ const router = Router();
 
 router.get("/", blogView);
 router.get("/:id", blogDetailView);
+router.get("/category", protectedRoute, likeBlog);
+router.get("/today", protectedRoute, likeBlog);
+router.get("/month", protectedRoute, likeBlog);
+router.get("/year", protectedRoute, likeBlog);
 router.post("/", protectedRoute, createBlog);
 router.put("/:id", protectedRoute, updateBlog);
 router.delete("/:id", protectedRoute, deleteBlog);
-router.put("/:id", protectedRoute, likeBlog);
+router.put("/:id/like", protectedRoute, likeBlog);
 
 export default router;

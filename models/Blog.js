@@ -30,6 +30,10 @@ const blogSchema = mongoose.Schema({
     type: String,
     require: true,
   },
+  createdBy: {
+    type: String,
+    require: true,
+  },
 });
 
 export default mongoose.model("Blog", blogSchema);

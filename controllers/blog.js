@@ -3,8 +3,36 @@ import { createBlogValidation } from "../utils/validation.js";
 
 export const blogView = async (req, res) => {
   try {
-    res.send("Hello World");
+    const active = "blog";
+    const page = parseInt(req.query.page);
+    const limit = 5;
+
+    const startIndex = (page - 1) * limit;
+    const endIndex = page * limit;
+
+    const results = {};
+
+    results.page = page;
+
+    if (endIndex < (await Blog.countDocuments())) {
+      results.next = {
+        page: page + 1,
+        limit: limit,
+      };
+    }
+
+    if (startIndex > 0) {
+      results.previous = {
+        page: page - 1,
+        limit: limit,
+      };
+    }
+
+    results.blogs = await Blog.find().limit(limit).skip(startIndex);
+
+    res.render("blog/blog", { results, active });
   } catch (error) {
+    console.log(error);
     res.status(500).json(error);
   }
 };
@@ -33,6 +61,7 @@ export const createBlog = async (req, res) => {
       body: req.body.body,
       image: req.body.image,
       category: req.body.category,
+      createdBy: req.user.username,
     });
 
     // saving facility to database and storing it in an variable
@@ -67,10 +96,10 @@ export const updateBlog = async (req, res) => {
 export const deleteBlog = async (req, res) => {
   try {
     // finding blog
-    const blog = await Facility.findById(req.params.id);
+    const blog = await Blog.findById(req.params.id);
 
     // if blog does not exist then returning a 404(object not found) error
-    if (!blog) return res.status(404).json("No facility found");
+    if (!blog) return res.status(404).json("No blog found");
 
     // deleting blog
     await blog.deleteOne();
@@ -83,8 +112,27 @@ export const deleteBlog = async (req, res) => {
 
 export const likeBlog = async (req, res) => {
   try {
-    res.send("Hello World");
+    // getting blog
+    const blog = await Blog.findById(req.params.id);
+
+    // checking if the user has already liked the blog
+    if (!blog.likes.includes(req.user._id)) {
+      // adding user id to the likes array
+      await blog.updateOne({
+        $push: { likes: req.user._id },
+      });
+
+      res.json(`Liked blog`);
+    } else {
+      // removing user id from likes array
+      await blog.updateOne({
+        $pull: { likes: req.user._id },
+      });
+
+      res.json(`Removed Like`);
+    }
   } catch (error) {
+    console.log(error);
     res.status(500).json(error);
   }
 };
