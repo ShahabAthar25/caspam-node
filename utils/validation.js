@@ -53,3 +53,27 @@ export const createFacilityValidation = (data) => {
 
   return schema.validate(data);
 };
+
+export const createBlogValidation = (data) => {
+  const schema = Joi.object({
+    title: Joi.string().required(),
+    snippet: Joi.string().required().max(200),
+    body: Joi.string().required(),
+    image: Joi.string().required(),
+    categorie: Joi.string()
+      .required()
+      .valid(
+        "Maths",
+        "Sports",
+        "Announcement",
+        "Message",
+        "Health",
+        "Syllabus",
+        "Undergraduat",
+        "Masters",
+        "PH.D"
+      ),
+  });
+
+  return schema.validate(data);
+};
