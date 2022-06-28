@@ -1,0 +1,129 @@
+<%- include("../partials/header.ejs") %>
+<section id="mu-page-breadcrumb">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="mu-page-breadcrumb-area">
+          <h2>Blog</h2>
+          <ol class="breadcrumb">
+            <li><a href="#">Home</a></li>
+            <li class="active"><%= post.title %></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="mu-course-content">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="mu-course-content-area">
+          <div class="row">
+            <div class="col-md-9">
+              <div class="mu-course-container mu-blog-single">
+                <div class="row">
+                  <div class="col-md-12">
+                    <article class="mu-blog-single-item">
+                      <figure class="mu-blog-single-img">
+                        <a
+                          ><img alt="img" src="<%= post.image %> " />
+                          <figcaption class="mu-blog-caption">
+                            <h3>
+                              <a><%= post.title %> </a>
+                            </h3>
+                          </figcaption>
+                        </a>
+                      </figure>
+                      <div class="mu-blog-description"><%= post.body %></div>
+                      <div class="mu-blog-tags">
+                        <ul class="mu-news-single-tagnav">
+                          <li>CATEGORIE :</li>
+                          <li>
+                            <a href="#"><%= post.category %> </a>
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="mu-blog-social">
+                        <ul class="mu-news-social-nav">
+                          <li>SOCIAL SHARE :</li>
+                          <li>
+                            <a href="#"><span class="fa fa-facebook"></span></a>
+                          </li>
+                          <li>
+                            <a href="#"><span class="fa fa-twitter"></span></a>
+                          </li>
+                          <li>
+                            <a href="#"><span class="fa fa-linkedin"></span></a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              ><span class="fa fa-google-plus"></span
+                            ></a>
+                          </li>
+                        </ul>
+                      </div>
+                    </article>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <aside class="mu-sidebar">
+                <div class="mu-single-sidebar">
+                  <h3>Categories</h3>
+                  <ul class="mu-sidebar-catg">
+                    <li>
+                      <a href="?page=1">All</a>
+                    </li>
+                    <li>
+                      <a href="category?sort=maths">Maths</a>
+                    </li>
+                    <li>
+                      <a href="category?sort=sports">Sports</a>
+                    </li>
+                    <li>
+                      <a href="category?sort=announcement">Announcement</a>
+                    </li>
+                    <li>
+                      <a href="category?sort=message">Message</a>
+                    </li>
+                    <li>
+                      <a href="category?sort=health">Health</a>
+                    </li>
+                    <li>
+                      <a href="category?sort=syllabus">Syllabus</a>
+                    </li>
+                    <li>
+                      <a href="category?sort=undergraduat">Undergraduat</a>
+                    </li>
+                    <li>
+                      <a href="category?sort=masters">Masters</a>
+                    </li>
+                    <li>
+                      <a href="category?sort=phd">PhD</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="mu-single-sidebar">
+                  <h3>Details</h3>
+                  <div class="tag-cloud">
+                    <p>
+                      This Post was created by
+                      <strong><%= post.createdBy %> </strong> on
+                      <strong
+                        ><%= post.month %> <%= post.day %>, <%= post.year %>
+                      </strong>
+                    </p>
+                  </div>
+                </div>
+              </aside>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<%- include("../partials/footer.ejs") %>

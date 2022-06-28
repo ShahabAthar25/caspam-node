@@ -33,7 +33,7 @@
                   <div class="col-md-6 col-sm-6">
                     <article class="mu-blog-single-item min-height-artical">
                       <figure class="mu-blog-single-img">
-                        <a href="/<%= post._id %>"
+                        <a href="<%= post._id %>"
                           ><img
                             class="min-height-img"
                             src="/img/blog/blog-1.jpg"
@@ -47,7 +47,10 @@
                       </figure>
                       <div class="mu-blog-meta">
                         <a href="#">By <%= post.createdBy %></a>
-                        <a href="#"><% post.createdAt %></a>
+                        <a href="#"
+                          >on <%= post.month %> <%=post.day %>, <%= post.year
+                          %></a
+                        >
                         <span><i class="fa fa-comments-o"></i>87</span>
                       </div>
                       <div class="mu-blog-description">

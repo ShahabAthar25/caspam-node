@@ -60,14 +60,16 @@ export const blogView = async (req, res) => {
 
     res.render("blog/blog", { results, active, today, month, year });
   } catch (error) {
-    console.log(error);
     res.status(500).json(error);
   }
 };
 
 export const blogDetailView = async (req, res) => {
   try {
-    res.send("Hello World");
+    const active = "blog";
+    const post = await Blog.findById(req.params.id);
+
+    res.render("blog/blogDetail", { post, active });
   } catch (error) {
     res.status(500).json(error);
   }
