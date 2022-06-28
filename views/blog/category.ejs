@@ -28,7 +28,7 @@
               <!-- start course content container -->
               <div class="mu-course-container mu-blog-archive">
                 <div class="row">
-                  <% if (results.blogs.length> 0) { %> <%
+                  <% if (results.blogs.length > 0) { %> <%
                   results.blogs.forEach(post => { %>
                   <div class="col-md-6 col-sm-6">
                     <article class="mu-blog-single-item min-height-artical">
@@ -62,7 +62,7 @@
                     </article>
                   </div>
                   <% }) %> <% } else { %>
-                  <center><h1>There are no posts</h1></center>
+                  <center><h1>There are no posts for this category</h1></center>
                   <% } %>
                 </div>
               </div>
@@ -107,31 +107,35 @@
                       <a href="?page=1">All</a>
                     </li>
                     <li>
-                      <a href="category/maths">Maths</a>
+                      <a
+                        href="category/maths"
+                        style="color: <%= category === 'maths' ? '#18bafd' : "black" %>"
+                        >Maths</a
+                      >
                     </li>
                     <li>
-                      <a href="category/sports">Sports</a>
+                      <a href="category/sports" style="color: <%= category === 'sports' ? '#18bafd' : 'black' %>">Sports</a>
                     </li>
                     <li>
-                      <a href="category/announcement">Announcement</a>
+                      <a href="category/announcement" style="color: <%= category === 'announcement' ? '#18bafd' : 'black' %>">Announcement</a>
                     </li>
                     <li>
-                      <a href="category/message">Message</a>
+                      <a href="category/message" style="color: <%= category === 'message' ? '#18bafd' : 'black' %>">Message</a>
                     </li>
                     <li>
-                      <a href="category/health">Health</a>
+                      <a href="category/health" style="color: <%= category === 'health' ? '#18bafd' : 'black' %>">Health</a>
                     </li>
                     <li>
-                      <a href="category/syllabus">Syllabus</a>
+                      <a href="category/syllabus" style="color: <%= category === 'syllabus' ? '#18bafd' : 'black' %>">Syllabus</a>
                     </li>
                     <li>
-                      <a href="category/undergraduat">Undergraduat</a>
+                      <a href="category/undergraduat style="color: <%= category === 'undergraduat' ? '#18bafd' : 'black' %>"">Undergraduat</a>
                     </li>
                     <li>
-                      <a href="category/masters">Masters</a>
+                      <a href="category/masters" style="color: <%= category === 'masters' ? '#18bafd' : 'black' %>">Masters</a>
                     </li>
                     <li>
-                      <a href="category/phd">PhD</a>
+                      <a href="category/phd" style="color: <%= category === 'phd' ? '#18bafd' : 'black' %>">PhD</a>
                     </li>
                   </ul>
                 </div>
