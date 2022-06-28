@@ -14,7 +14,7 @@ const router = Router();
 
 router.get("/", blogView);
 router.get("/:id", blogDetailView);
-router.get("/category", protectedRoute, likeBlog);
+router.get("/category/:category", protectedRoute, likeBlog);
 router.get("/today", protectedRoute, likeBlog);
 router.get("/month", protectedRoute, likeBlog);
 router.get("/year", protectedRoute, likeBlog);

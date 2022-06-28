@@ -19,8 +19,20 @@ const blogSchema = mongoose.Schema({
     require: true,
   },
   createdAt: {
+    type: Date,
+    default: Date,
+  },
+  day: {
     type: String,
-    default: moment().format("MMMM Do, YYYY"),
+    default: moment().format("Do"),
+  },
+  month: {
+    type: String,
+    default: moment().format("MMMM"),
+  },
+  year: {
+    type: String,
+    default: moment().format("YYYY"),
   },
   likes: {
     type: Array,

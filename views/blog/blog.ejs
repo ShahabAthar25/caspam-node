@@ -59,7 +59,7 @@
                     </article>
                   </div>
                   <% }) %> <% } else { %>
-                  <center>There are no posts</center>
+                  <center><h1>There are no posts</h1></center>
                   <% } %>
                 </div>
               </div>
@@ -75,11 +75,11 @@
                         <span class="fa fa-angle-left"></span> Prev
                       </a>
                     </li>
-                    <% } %>
+                    <% } %> <% if (results.page) { %>
                     <li class="active">
                       <a href="#"><%= results.page %></a>
                     </li>
-                    <% if (results.next) { %>
+                    <% } %> <% if (results.next) { %>
                     <li>
                       <a
                         href="?page=<%= results.next.page %>"
@@ -101,15 +101,35 @@
                   <h3>Categories</h3>
                   <ul class="mu-sidebar-catg">
                     <li>
-                      <a href="{% url 'blog' %}">All</a>
+                      <a href="?page=1">All</a>
                     </li>
-                    {% for category in category %}
                     <li>
-                      <a href="{% url 'category' category.pk %}">{{
-                        category.name
-                      }}</a>
+                      <a href="category?sort=maths">Maths</a>
                     </li>
-                    {% endfor %}
+                    <li>
+                      <a href="category?sort=sports">Sports</a>
+                    </li>
+                    <li>
+                      <a href="category?sort=announcement">Announcement</a>
+                    </li>
+                    <li>
+                      <a href="category?sort=message">Message</a>
+                    </li>
+                    <li>
+                      <a href="category?sort=health">Health</a>
+                    </li>
+                    <li>
+                      <a href="category?sort=syllabus">Syllabus</a>
+                    </li>
+                    <li>
+                      <a href="category?sort=undergraduat">Undergraduat</a>
+                    </li>
+                    <li>
+                      <a href="category?sort=masters">Masters</a>
+                    </li>
+                    <li>
+                      <a href="category?sort=phd">PhD</a>
+                    </li>
                   </ul>
                 </div>
                 <!-- end single sidebar -->
@@ -118,22 +138,22 @@
                   <h3>Archives</h3>
                   <ul class="mu-sidebar-catg mu-sidebar-archives">
                     <li>
-                      <a href="{% url 'date' %}?sort=today"
-                        >Today <span>({{ today }})</span></a
+                      <a href="today"
+                        >Today <span>(<%= today.length %>)</span></a
                       >
                     </li>
                     <li>
-                      <a href="{% url 'date' %}?sort=month"
-                        >This Month <span>({{ month }})</span></a
+                      <a href="month"
+                        >This Month <span>(<%= month.length %>)</span></a
                       >
                     </li>
                     <li>
-                      <a href="{% url 'date' %}?sort=year"
-                        >This Year <span>({{ year }})</span></a
+                      <a href="year"
+                        >This Year <span>(<%= year.length %>)</span></a
                       >
                     </li>
                     <li>
-                      <a href="{% url 'blog' %}">All</a>
+                      <a href="/">All</a>
                     </li>
                   </ul>
                 </div>

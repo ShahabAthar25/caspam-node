@@ -63,15 +63,15 @@ export const createBlogValidation = (data) => {
     category: Joi.string()
       .required()
       .valid(
-        "Maths",
-        "Sports",
-        "Announcement",
-        "Message",
-        "Health",
-        "Syllabus",
-        "Undergraduat",
-        "Masters",
-        "PH.D"
+        "maths",
+        "sports",
+        "announcement",
+        "message",
+        "health",
+        "syllabus",
+        "undergraduat",
+        "masters",
+        "phd"
       ),
   });
 

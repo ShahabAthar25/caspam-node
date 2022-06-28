@@ -1,18 +1,28 @@
 import Blog from "../models/Blog.js";
 import { createBlogValidation } from "../utils/validation.js";
+import moment from "moment";
 
 export const blogView = async (req, res) => {
   try {
     const active = "blog";
     const page = parseInt(req.query.page);
-    const limit = 5;
+
+    if (!page) {
+      res.redirect("/blog?page=1");
+    }
+
+    const limit = 6;
 
     const startIndex = (page - 1) * limit;
     const endIndex = page * limit;
 
     const results = {};
 
-    results.page = page;
+    if (page === 1 && endIndex >= (await Blog.countDocuments())) {
+      results.page = undefined;
+    } else {
+      results.page = page;
+    }
 
     if (endIndex < (await Blog.countDocuments())) {
       results.next = {
@@ -28,9 +38,27 @@ export const blogView = async (req, res) => {
       };
     }
 
-    results.blogs = await Blog.find().limit(limit).skip(startIndex);
+    results.blogs = await Blog.find()
+      .limit(limit)
+      .skip(startIndex)
+      .sort({ createdAt: "desc" });
 
-    res.render("blog/blog", { results, active });
+    const today = await Blog.find({
+      day: moment().format("Do"),
+      month: moment().format("MMMM"),
+      year: moment().format("YYYY"),
+    });
+
+    const month = await Blog.find({
+      month: moment().format("MMMM"),
+      year: moment().format("YYYY"),
+    });
+
+    const year = await Blog.find({
+      year: moment().format("YYYY"),
+    });
+
+    res.render("blog/blog", { results, active, today, month, year });
   } catch (error) {
     console.log(error);
     res.status(500).json(error);
