@@ -5,44 +5,6 @@ import moment from "moment";
 export const blogView = async (req, res) => {
   try {
     const active = "blog";
-    const page = parseInt(req.query.page);
-
-    if (!page) {
-      res.redirect("/blog?page=1");
-    }
-
-    const limit = 6;
-
-    const startIndex = (page - 1) * limit;
-    const endIndex = page * limit;
-
-    const results = {};
-
-    if (page === 1 && endIndex >= (await Blog.countDocuments())) {
-      results.page = undefined;
-    } else {
-      results.page = page;
-    }
-
-    if (endIndex < (await Blog.countDocuments())) {
-      results.next = {
-        page: page + 1,
-        limit: limit,
-      };
-    }
-
-    if (startIndex > 0) {
-      results.previous = {
-        page: page - 1,
-        limit: limit,
-      };
-    }
-
-    results.blogs = await Blog.find()
-      .limit(limit)
-      .skip(startIndex)
-      .sort({ createdAt: "desc" });
-
     const today = await Blog.find({
       day: moment().format("Do"),
       month: moment().format("MMMM"),
@@ -58,7 +20,13 @@ export const blogView = async (req, res) => {
       year: moment().format("YYYY"),
     });
 
-    res.render("blog/blog", { results, active, today, month, year });
+    res.render("blog/blog", {
+      results: res.results,
+      active,
+      today,
+      month,
+      year,
+    });
   } catch (error) {
     res.status(500).json(error);
   }

@@ -10,10 +10,12 @@ import {
 } from "../controllers/blog.js";
 
 import protectedRoute from "../middleware/protected.js";
+import pagination from "../middleware/pagination.js";
+import Blog from "../models/Blog.js";
 
 const router = Router();
 
-router.get("/", blogView);
+router.get("/", pagination(Blog, {}), blogView);
 router.get("/:id", blogDetailView);
 router.get("/category/:category", protectedRoute, categoryView);
 router.get("/today", protectedRoute, likeBlog);
