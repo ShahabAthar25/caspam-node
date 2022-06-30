@@ -1,0 +1,168 @@
+<%- include("../partials/header.ejs") %>
+
+<base href="/blog/" />
+
+<section id="mu-page-breadcrumb">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="mu-page-breadcrumb-area">
+          <h2>Blog</h2>
+          <ol class="breadcrumb">
+            <li><a href="#">Home</a></li>
+            <li class="active">Blog</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="mu-course-content">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="mu-course-content-area">
+          <div class="row">
+            <div class="col-md-9">
+              <!-- start course content container -->
+              <div class="mu-course-container mu-blog-archive">
+                <div class="row">
+                  <% if (results.results.length> 0) { %> <%
+                  results.results.forEach(post => { %>
+                  <div class="col-md-6 col-sm-6">
+                    <article class="mu-blog-single-item min-height-artical">
+                      <figure class="mu-blog-single-img">
+                        <a href="<%= post._id %>"
+                          ><img
+                            class="min-height-img"
+                            src="<%= post.image %>"
+                            alt="img"
+                        /></a>
+                        <figcaption class="mu-blog-caption">
+                          <h3>
+                            <a href="/<%= post._id %>"><%= post.title %></a>
+                          </h3>
+                        </figcaption>
+                      </figure>
+                      <div class="mu-blog-meta">
+                        <a href="#">By <%= post.createdBy %></a>
+                        <a href="#"
+                          >on <%= post.month %> <%=post.day %>, <%= post.year
+                          %></a
+                        >
+                        <span><i class="fa fa-comments-o"></i>87</span>
+                      </div>
+                      <div class="mu-blog-description">
+                        <p><%= post.body%></p>
+                        <a class="mu-read-more-btn" href="<%= post._id %>"
+                          >Read More</a
+                        >
+                      </div>
+                    </article>
+                  </div>
+                  <% }) %> <% } else { %>
+                  <center><h1>There are no posts</h1></center>
+                  <% } %>
+                </div>
+              </div>
+              <div class="mu-pagination">
+                <nav>
+                  <ul class="pagination">
+                    <% if (results.previous) { %>
+                    <li>
+                      <a
+                        href="?page=<%= results.previous.page %>"
+                        aria-label="Previous"
+                      >
+                        <span class="fa fa-angle-left"></span> Prev
+                      </a>
+                    </li>
+                    <% } %> <% if (results.page) { %>
+                    <li class="active">
+                      <a href="#"><%= results.page %></a>
+                    </li>
+                    <% } %> <% if (results.next) { %>
+                    <li>
+                      <a
+                        href="?page=<%= results.next.page %>"
+                        aria-label="Next"
+                      >
+                        Next <span class="fa fa-angle-right"></span>
+                      </a>
+                    </li>
+                    <% } %>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <!-- start sidebar -->
+              <aside class="mu-sidebar">
+                <!-- start single sidebar -->
+                <div class="mu-single-sidebar">
+                  <h3>Categories</h3>
+                  <ul class="mu-sidebar-catg">
+                    <li>
+                      <a href="?page=1">All</a>
+                    </li>
+                    <li>
+                      <a href="category/maths">Maths</a>
+                    </li>
+                    <li>
+                      <a href="category/sports">Sports</a>
+                    </li>
+                    <li>
+                      <a href="category/announcement">Announcement</a>
+                    </li>
+                    <li>
+                      <a href="category/message">Message</a>
+                    </li>
+                    <li>
+                      <a href="category/health">Health</a>
+                    </li>
+                    <li>
+                      <a href="category/syllabus">Syllabus</a>
+                    </li>
+                    <li>
+                      <a href="category/undergraduat">Undergraduat</a>
+                    </li>
+                    <li>
+                      <a href="category/masters">Masters</a>
+                    </li>
+                    <li>
+                      <a href="category/phd">PhD</a>
+                    </li>
+                  </ul>
+                </div>
+                <!-- end single sidebar -->
+                <!-- start single sidebar -->
+                <div class="mu-single-sidebar">
+                  <h3>Archives</h3>
+                  <ul class="mu-sidebar-catg mu-sidebar-archives">
+                    <li>
+                      <a href="today">Today <span>(<%= today %>)</span></a>
+                    </li>
+                    <li>
+                      <a href="month">This Month <span>(<%= month %>)</span></a>
+                    </li>
+                    <li>
+                      <a href="year">This Year <span>(<%= year %>)</span></a>
+                    </li>
+                    <li>
+                      <a href="/">All</a>
+                    </li>
+                  </ul>
+                </div>
+                <!-- end single sidebar -->
+              </aside>
+              <!-- / end sidebar -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include("../partials/footer.ejs") %>

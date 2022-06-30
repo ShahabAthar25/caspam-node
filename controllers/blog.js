@@ -52,6 +52,13 @@ export const categoryView = async (req, res) => {
   try {
     const active = "blog";
 
+    const page = parseInt(req.query.page);
+    const results = await pagination(
+      Blog,
+      { category: req.params.category },
+      page
+    );
+
     const today = await Blog.find({
       day: moment().format("Do"),
       month: moment().format("MMMM"),
@@ -68,7 +75,7 @@ export const categoryView = async (req, res) => {
     });
 
     res.render("blog/category", {
-      results: res.results,
+      results,
       active,
       today,
       month,
@@ -77,6 +84,78 @@ export const categoryView = async (req, res) => {
     });
   } catch (error) {
     res.status(500).json(error);
+  }
+};
+
+export const dayView = async (req, res) => {
+  try {
+    const active = "blog";
+
+    const page = parseInt(req.query.page);
+    const results = await pagination(
+      Blog,
+      {
+        day: moment().format("Do"),
+        month: moment().format("MMMM"),
+        year: moment().format("YYYY"),
+      },
+      page
+    );
+
+    const month = await Blog.find({
+      month: moment().format("MMMM"),
+      year: moment().format("YYYY"),
+    });
+
+    const year = await Blog.find({
+      year: moment().format("YYYY"),
+    });
+
+    res.render("blog/dateView", {
+      results,
+      active,
+      today: results.results.length,
+      month: month.length,
+      year: year.length,
+      category: req.params.category,
+    });
+  } catch (error) {
+    res.status(500).json(error.message);
+  }
+};
+
+export const monthView = async (req, res) => {
+  try {
+    const active = "blog";
+
+    const page = parseInt(req.query.page);
+    const results = await pagination(
+      Blog,
+      { month: moment().format("MMMM"), year: moment().format("YYYY") },
+      page
+    );
+
+    const today = await Blog.find({
+      day: moment().format("Do"),
+      month: moment().format("MMMM"),
+      year: moment().format("YYYY"),
+    });
+
+    const year = await Blog.find({
+      year: moment().format("YYYY"),
+    });
+
+    res.render("blog/category", {
+      results,
+      active,
+      today: today.length,
+      month: results.results.length,
+      year: year.length,
+      category: req.params.category,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json(error.message);
   }
 };
 
