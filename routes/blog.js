@@ -8,6 +8,7 @@ import {
   likeBlog,
   categoryView,
   dayView,
+  monthView,
 } from "../controllers/blog.js";
 
 import protectedRoute from "../middleware/protected.js";
@@ -15,11 +16,11 @@ import protectedRoute from "../middleware/protected.js";
 const router = Router();
 
 router.get("/", blogView);
-router.get("/archives/today", dayView);
-router.get("/archives/month", likeBlog);
-router.get("/archives/year", likeBlog);
 router.get("/:id", blogDetailView);
 router.get("/category/:category", categoryView);
+router.get("/archives/today", dayView);
+router.get("/archives/month", monthView);
+router.get("/archives/year", likeBlog);
 router.post("/", protectedRoute, createBlog);
 router.put("/:id", protectedRoute, updateBlog);
 router.delete("/:id", protectedRoute, deleteBlog);

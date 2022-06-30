@@ -145,12 +145,48 @@ export const monthView = async (req, res) => {
       year: moment().format("YYYY"),
     });
 
-    res.render("blog/category", {
+    res.render("blog/dateView", {
       results,
       active,
       today: today.length,
       month: results.results.length,
       year: year.length,
+      category: req.params.category,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json(error.message);
+  }
+};
+
+export const yearView = async (req, res) => {
+  try {
+    const active = "blog";
+
+    const page = parseInt(req.query.page);
+    const results = await pagination(
+      Blog,
+      { year: moment().format("YYYY") },
+      page
+    );
+
+    const today = await Blog.find({
+      day: moment().format("Do"),
+      month: moment().format("MMMM"),
+      year: moment().format("YYYY"),
+    });
+
+    const month = await Blog.find({
+      month: moment().format("MMMM"),
+      year: moment().format("YYYY"),
+    });
+
+    res.render("blog/dateView", {
+      results,
+      active,
+      today: today.length,
+      month: month.length,
+      year: results.results.length,
       category: req.params.category,
     });
   } catch (error) {
